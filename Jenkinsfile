@@ -10,20 +10,23 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Checking GitHub repository'
-                checkout scm
             }
         }
 
         stage('Build') {
             steps {
-                echo 'Build successful-polling test'
+                echo 'Build stage'; bat 'echo build completed'
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Second Test successful '
+                bat 'echo Test successful'
             }
         }
     }
+post{
+    success{echo 'pipeline completed successfully'}
+    failure{echo 'pipeline failed'}
+}
 }
